@@ -202,7 +202,7 @@ db.once('open', async () => {
       name: 'Toilet Papers',
       category: categories[4]._id,
       description:
-        'Your employees and guests will notice that you care enough to provide the very best – like stocking your washroom with Cottonelle Ultra Soft Bathroom Tissue. Each pure white sheet is cushioned for extra comfort, care and cleanliness. Plus, this toilet paper is FSC-certified, so you'll know you're doing something smart for the environment and for your business. You'll want to buy bulk toilet paper, so you're always prepared for your washroom traffic. Offering Cottonelle toilet paper in your business lets people know you care enough to provide the very best.',
+        'Your employees and guests will notice that you care enough to provide the very best like stocking your washroom with Cottonelle Ultra Soft Bathroom Tissue. Each pure white sheet is cushioned for extra comfort, care and cleanliness. Plus, this toilet paper is FSC-certified, so you will know you are doing something smart for the environment and for your business. You will want to buy bulk toilet paper, so you are always prepared for your washroom traffic. Offering Cottonelle toilet paper in your business lets people know you care enough to provide the very best.',
       image: 'toilet-papers.jpg',
       price: 12.99,
       quantity: 100
