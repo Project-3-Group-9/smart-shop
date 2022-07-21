@@ -1,7 +1,11 @@
+const {AuthenticationError} = require('apollo-server-express');
+const {Product} = require('../models');
+
 const resolvers = {
     Query: {
-        test: () => {
-            return 'It works!';
+        products: async () => {
+            return Product.find()
+            .populate('category');
         }
     }
 };

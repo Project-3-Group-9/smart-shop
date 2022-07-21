@@ -4,7 +4,20 @@ const {gql} = require('apollo-server-express');
 //typeDefs
 const typeDefs = gql`
     type Query {
-        test: String
+        products: [Product]
+    }
+
+    type Product {
+        name: String
+        description: String
+        image: String
+        price: Int
+        quantity: Int
+        category: Category
+    }
+
+    type Category {
+        name: String
     }
 `;
 
