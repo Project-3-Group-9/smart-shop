@@ -4,7 +4,7 @@ import Nav from './components/Nav';
 // import Resume from './components/Resume';
 // import Contact from './components/Contact';
 // import Project from './components/Project';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
