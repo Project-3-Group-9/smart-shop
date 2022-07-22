@@ -23,13 +23,18 @@ function Nav() {
          </div>
          <nav className="col-12 my-4 col-md-6 col-lg-4 my-2">
          <ul className="d-flex list-unstyled justify-content-end">
-            <li className="p-1 mx-2" style={{fontSize:"25px"}}><FontAwesomeIcon icon={faUserTie} 
-            className="text-danger mx-1"
-            style={{fontSize:"30px"}}/>Login</li>
+            <li className="p-1 mx-2 text-decoration-none" style={{fontSize:"25px"}}>
+            <Link to="/login" className='text-decoration-none text-black'><FontAwesomeIcon icon={faUserTie} 
+            className="text-danger mx-1 "
+            style={{fontSize:"30px"}}/>Login
+            </Link>
+            </li>
             <li>
+            <Link to="/cart">
             <FontAwesomeIcon icon={faCartArrowDown} 
             className="text-danger"
             style={{fontSize:"48px"}}/>
+            </Link>
             </li>
          </ul>
          </nav>
