@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { NavLink,Link } from 'react-router-dom';
 function SignIN() {
     return(
 <section className='p-5'>
@@ -27,7 +28,7 @@ function SignIN() {
             <button type='submit' className='btn btn-default btn-danger my-3'>Login</button>
           </form>
           <br />
-          <p>Or sign up <a href='/'>here</a></p>
+          <p>Or sign up <Link to='/sign'>here</Link></p>
         </div>
       </div>
 </section>
