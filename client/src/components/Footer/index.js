@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope,faSquarePhone,faCodeCompare,faUser} from '@fortawesome/free-solid-svg-icons'
+
 function Footer() {
     return(
 <footer className="p-2 p-md-5 bg-dark">
@@ -17,8 +16,8 @@ function Footer() {
         Heroku</a></li>
         </ul>
       </address>
-      <div className="text-center">Thanks for visiting our site</div>
-      <div className="text-center">&copy; Smart Shop inc.</div>
+      <div className="text-center text-white">Thanks for visiting our site</div>
+      <div className="text-center text-white">&copy; Smart Shop inc.</div>
   </footer>
     )
 }
