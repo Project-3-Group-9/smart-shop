@@ -5,6 +5,7 @@ const {gql} = require('apollo-server-express');
 const typeDefs = gql`
     type Query {
         products: [Product]
+        product (name: String): Product
     }
 
     type Product {

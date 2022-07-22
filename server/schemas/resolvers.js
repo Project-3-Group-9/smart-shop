@@ -6,6 +6,10 @@ const resolvers = {
         products: async () => {
             return Product.find()
             .populate('category');
+        },
+        product: async (parent, {name}) => {
+            return Product.findOne({name})
+            .populate('category');
         }
     }
 };
