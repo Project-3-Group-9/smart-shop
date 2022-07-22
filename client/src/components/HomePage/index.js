@@ -19,7 +19,6 @@ function Homepage() {
   <Categories/>
   <Categories/>
   <Categories/>
-  <Categories/>
   </>
     )
 }
