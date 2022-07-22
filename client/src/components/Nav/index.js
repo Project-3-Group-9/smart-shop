@@ -9,7 +9,9 @@ function Nav() {
           <div className="row">
           <div className="col-12 my-4 col-md-6 col-lg-3 m-0 p-0">
           <div>
+          <Link to="/" className='text-decoration-none text-black'>
               <img src={logo} style={{height:"66px",width:"180px",}}></img>
+              </Link>
           </div>
           </div>
           <div className="col-12 my-4 col-md-6 col-lg-5 ">

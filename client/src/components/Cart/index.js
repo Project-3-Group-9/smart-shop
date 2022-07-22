@@ -4,7 +4,7 @@ function Cart() {
 <section className='m-5'>
 <h1>We've Got You!</h1>
       <h2>Here Are Your Books</h2>
-      <table class="table table-hover m-5">
+      <table class="table table-hover p-5">
         <thead>
           <tr>
           <th scope="col">Id</th>
@@ -27,7 +27,7 @@ function Cart() {
 
       <div id="purchasesDiv">
         <h1 class="mt-5">Purchases history</h1>
-        <table class="table table-hover m-5">
+        <table class="table table-hover p-5">
           <thead>
             <tr>
             <th scope="col">UserId</th>
