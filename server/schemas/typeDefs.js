@@ -8,6 +8,8 @@ const typeDefs = gql`
         product (name: String): Product
         orders: [Order]
         order (purchaseDate: String): Order
+        categories: [Category]
+        category (name: String): Category
     }
 
     type Product {

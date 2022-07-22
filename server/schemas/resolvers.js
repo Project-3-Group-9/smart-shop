@@ -1,5 +1,5 @@
 const {AuthenticationError} = require('apollo-server-express');
-const {Product, Order} = require('../models');
+const {Product, Order, Category} = require('../models');
 
 const resolvers = {
     Query: {
@@ -18,6 +18,12 @@ const resolvers = {
         order: async (parent, {purchaseDate}) => {
             return Order.findOne({purchaseDate})
             .populate('products');
+        },
+        categories: async () => {
+            return Category.find();
+        },
+        category: async (parent, {name}) => {
+            return Category.findOne({name})
         }
     }
 };
