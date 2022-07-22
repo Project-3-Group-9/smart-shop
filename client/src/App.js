@@ -6,6 +6,7 @@ import Cart from './components/Cart';
 // import Project from './components/Project';
 import Footer from './components/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import SignIN from './components/SignInPage';
 function App() {
   return (
     <Router>
@@ -15,8 +16,8 @@ function App() {
       <Routes>
   <Route path="/" element={<HomePage/>} exact/>
   <Route path="/cart" element={<Cart/>}/>
-  {/* <Route path="/portfolio" element={<Project/>}/>
-  <Route path="/contact" element={<Contact/>}/>
+  <Route path="/login" element={<SignIN/>}/>
+  {/* <Route path="/contact" element={<Contact/>}/>
   <Route path="/resume" element={<Resume/>}/> */}
     </Routes>
     <Footer/>

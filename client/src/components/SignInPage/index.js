@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 function SignIN() {
     return(
-<section>
+<section className='p-5'>
 <div class='row'>
         <div class='col-12 col-md-6 col-md-offset-3'>
           <h2>Login Form</h2>
           <form class='login '>
-            <div class='form-group'>
+            <div className='form-group my-3'>
               <label for='exampleInputEmail1'>Email address</label>
               <input
                 type='email'
@@ -15,16 +15,16 @@ function SignIN() {
                 placeholder='Email'
               />
             </div>
-            <div class='form-group'>
+            <div class='form-group my-3'>
               <label for='exampleInputPassword1'>Password</label>
               <input
                 type='password'
-                class='form-control'
+                className='form-control'
                 id='password-input'
                 placeholder='Password'
               />
             </div>
-            <button type='submit' class='btn btn-default btn-outline-info'>Login</button>
+            <button type='submit' className='btn btn-default btn-danger my-3'>Login</button>
           </form>
           <br />
           <p>Or sign up <a href='/'>here</a></p>
