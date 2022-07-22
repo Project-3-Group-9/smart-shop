@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './components/Nav';
-// import About from './components/About';
+import HomePage from './components/HomePage';
 // import Resume from './components/Resume';
 // import Contact from './components/Contact';
 // import Project from './components/Project';
@@ -11,8 +11,9 @@ function App() {
     <Router>
       <div className="App" >
         <Nav></Nav>
+        <div className='bg-light' style={{height:"6px"}}></div>
       <Routes>
-  {/* <Route path="/" element={<Nav/>} exact/> */}
+  <Route path="/" element={<HomePage/>} exact/>
   {/* <Route path="/about" element={<About/>}/>
   <Route path="/portfolio" element={<Project/>}/>
   <Route path="/contact" element={<Contact/>}/>
