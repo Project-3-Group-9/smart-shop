@@ -229,19 +229,22 @@ const data = [
 function Categories() {
     return(
         <>
-<section className="p-3">
-    <section className="p-3">
+
+    <section className=" m-2">
         <h2 className="mx-4">Kitchen</h2>
-        <div className='d-flex overflow-auto'>
+        <div className='d-flex overflow-auto p-3'>
         {data.map(category =>(
+            <div className='mx-4 bg-light'>
         <img id="awsImg" src={require(`../../assets/images/categories/images/${category.image}`)}
-        className='mx-4'
         style={{height:"220px",width:"220px"}}
       ></img>
+      <p className='d-block text-end mx-2'>Price:  {category.price}</p>
+      <p className='d-block text-end mx-2'>Stock:  {category.quantity}</p>
+      <button className="" style={{width:"100%"}}>Add to cart</button>
+      </div>
         ))}
         </div>
     </section>
-</section>
   </>
     )
 }
