@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './components/Nav';
 import HomePage from './components/HomePage';
-// import Resume from './components/Resume';
+import Cart from './components/Cart';
 // import Contact from './components/Contact';
 // import Project from './components/Project';
 import Footer from './components/Footer';
@@ -14,8 +14,8 @@ function App() {
         <div className='bg-light' style={{height:"6px"}}></div>
       <Routes>
   <Route path="/" element={<HomePage/>} exact/>
-  {/* <Route path="/about" element={<About/>}/>
-  <Route path="/portfolio" element={<Project/>}/>
+  <Route path="/cart" element={<Cart/>}/>
+  {/* <Route path="/portfolio" element={<Project/>}/>
   <Route path="/contact" element={<Contact/>}/>
   <Route path="/resume" element={<Resume/>}/> */}
     </Routes>
