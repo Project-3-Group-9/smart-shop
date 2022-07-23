@@ -12,6 +12,7 @@ const typeDefs = gql`
         category (name: String): Category
         users: [User]
         user (email: String): User
+        me: User
     }
 
     type Mutation {

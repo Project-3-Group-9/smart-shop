@@ -29,11 +29,24 @@ const resolvers = {
         },
         users: async () => {
             return User.find()
+            .select('-__v -password')
             .populate('orders');
         },
         user: async (parent, {email}) => {
             return User.findOne({email})
+            .select('-__v -password')
             .populate('orders');
+        },
+        me: async (parent, args, context) => {
+            if(context.user) {
+                const userData = await User.findOne({email: context.user.email})
+                    .select('-__v -password')
+                    .populate('orders');
+
+                    return userData;
+            }
+
+            throw new AuthenticationError('Not logged in');
         }
     },
     Mutation: {
