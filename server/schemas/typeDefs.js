@@ -1,8 +1,8 @@
 // gql tagged template function
-const {gql} = require('apollo-server-express');
+const { gql } = require('apollo-server-express');
 
 //typeDefs
-const typeDefs = gql`
+const typeDefs = gql `
     type Query {
         products: [Product]
         product (name: String): Product
@@ -18,6 +18,7 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         newUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+        addOrder(products: [ID]!): Order
     }
 
     type Auth {
@@ -40,6 +41,7 @@ const typeDefs = gql`
 
     type Order {
         purchaseDate: String
+        deliveryAddress: String
         products: [Product]
     }
 
