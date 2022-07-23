@@ -23,7 +23,7 @@ const resolvers = {
             return Category.find();
         },
         category: async (parent, {name}) => {
-            return Category.findOne({name})
+            return Category.findOne({name});
         },
         users: async () => {
             return User.find()
@@ -32,6 +32,28 @@ const resolvers = {
         user: async (parent, {email}) => {
             return User.findOne({email})
             .populate('orders');
+        }
+    },
+    Mutation: {
+        newUser: async (parent, args) => {
+            const user = await User.create(args);
+
+            return user;
+        },
+        login: async (parent, {email, password}) => {
+            const user = await User.findOne({email});
+
+            if(!user) {
+                throw new AuthenticationError('Your credentials are incorrect');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if(!correctPw) {
+                throw new AuthenticationError('Your credentials are incorrect');
+            }
+
+            return user;
         }
     }
 };
