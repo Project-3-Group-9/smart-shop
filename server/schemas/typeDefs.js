@@ -12,6 +12,17 @@ const typeDefs = gql`
         category (name: String): Category
         users: [User]
         user (email: String): User
+        me: User
+    }
+
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        newUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    }
+
+    type Auth {
+        token: ID!
+        user: User
     }
 
     type Product {
