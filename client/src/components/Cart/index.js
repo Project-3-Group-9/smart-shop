@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import "../stylesheet.css"
 function Cart() {
     return(
 <section className='cart-form'>

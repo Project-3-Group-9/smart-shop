@@ -30,14 +30,16 @@
 /* login */
 
 .login-form {
-    margin:15.1vh;
+    margin: 8.2%;
 }
 
 
 /* cart */
 
 .cart-form {
-    margin: 6.45vh;
+    margin: 4%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 
