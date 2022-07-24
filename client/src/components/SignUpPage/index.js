@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { NavLink,Link } from 'react-router-dom';
+import "../stylesheet.css"
 function SignUp() {
     return(
-<section className='p-5'>
+<section className='sign-out-form'>
 <div class='row'>
         <div class='col-12 col-md-6 col-md-offset-3'>
           <h2>Sign Up Form</h2>

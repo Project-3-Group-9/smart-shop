@@ -27,12 +27,16 @@
 
 
 
-/* login */
+/* login/sign-out */
 
 .login-form {
     margin: 8.2%;
 }
 
+
+.sign-out-form {
+    margin: 4.9%;
+}
 
 /* cart */
 
