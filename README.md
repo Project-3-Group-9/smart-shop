@@ -1,4 +1,4 @@
- # Smart Shop 
+ # Smart Shop 💳
   
    ![Badge](https://img.shields.io/badge/License-MIT-blueviolet)
    ![Badge](https://img.shields.io/badge/Contributors-6-blue)
