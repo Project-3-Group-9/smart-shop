@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink,Link } from 'react-router-dom';
 const data = [
     {
@@ -226,9 +226,15 @@ const data = [
       quantity: 60
     }
   ];
+ 
 function Categories(props) {
-  console.log("hello");
-  console.log(props.homedata);
+  const[cart,setCart]=useState([]);
+  
+  const handleClick = (name,price) => {
+   alert("hello");
+  //  console.log(name);
+   console.log(price);
+  };
     return(
         <>
     <section className=" m-2">
@@ -236,12 +242,15 @@ function Categories(props) {
         <div className='d-flex overflow-auto p-3 '>
         {props.homedata.map(category =>(
             <div className='mx-4 bg-light '>
-        <img id="awsImg" src={require(`../../assets/categories/images/${category.image}`)}
+        <img  src={require(`../../assets/categories/images/${category.image}`)}
         style={{height:"220px",width:"220px"}}
       ></img>
       <p className='d-block text-end mx-2'>Price:{category.price}</p>
       <p className='d-block text-end mx-2'>Stock:  {category.quantity}</p>
-      <button class="btn btn-outline-danger" style={{width:"100%"}}>Add to cart</button>
+      <button onClick={() => {
+            handleClick(category.name,category.price);
+          }}
+           name={category.name} class="btn btn-outline-danger" style={{width:"100%"}}>Add to cart</button>
       </div>
         ))}
         </div>
