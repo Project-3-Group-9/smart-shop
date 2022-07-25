@@ -1,38 +1,89 @@
-const {AuthenticationError} = require('apollo-server-express');
-const {Product, Order, Category, User} = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { Product, Order, Category, User } = require('../models');
+const { signToken } = require('../utils/auth');
+
 
 const resolvers = {
     Query: {
-        products: async () => {
+        products: async() => {
             return Product.find()
-            .populate('category');
+                .populate('category');
         },
-        product: async (parent, {name}) => {
-            return Product.findOne({name})
-            .populate('category');
+        product: async(parent, { name }) => {
+            return Product.findOne({ name })
+                .populate('category');
         },
-        orders: async () => {
+        orders: async() => {
             return Order.find()
-            .populate('products');
+                .populate('products');
         },
-        order: async (parent, {purchaseDate}) => {
-            return Order.findOne({purchaseDate})
-            .populate('products');
+        order: async(parent, { purchaseDate }) => {
+            return Order.findOne({ purchaseDate })
+                .populate('products');
         },
-        categories: async () => {
+        categories: async() => {
             return Category.find();
         },
-        category: async (parent, {name}) => {
-            return Category.findOne({name})
+        category: async(parent, { name }) => {
+            return Category.findOne({ name });
         },
-        users: async () => {
+        users: async() => {
             return User.find()
-            .populate('orders');
+                .select('-__v -password')
+                .populate('orders');
         },
-        user: async (parent, {email}) => {
-            return User.findOne({email})
-            .populate('orders');
+        user: async(parent, { email }) => {
+            return User.findOne({ email })
+                .select('-__v -password')
+                .populate('orders');
+        },
+        me: async(parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ email: context.user.email })
+                    .select('-__v -password')
+                    .populate('orders');
+
+                return userData;
+            }
+
+            throw new AuthenticationError('Not logged in');
         }
+    },
+    Mutation: {
+        newUser: async(parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
+
+            return { token, user };
+        },
+        login: async(parent, { email, password }) => {
+            const user = await User.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('Your credentials are incorrect');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Your credentials are incorrect');
+            }
+
+            const token = signToken(user);
+            return { token, user };
+        },
+        addOrder: async(parent, { products, purchaseDate, deliveryAddress }, context) => {
+            console.log(context);
+            if (context.user) {
+                const order = new Order({ products, purchaseDate, deliveryAddress });
+
+                await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+                return order;
+            }
+
+            throw new AuthenticationError('Not logged in');
+        },
     }
 };
 
