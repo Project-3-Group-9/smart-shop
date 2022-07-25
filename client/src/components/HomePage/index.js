@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { NavLink,Link } from 'react-router-dom';
 import Categories from '../Categories';
+import Auth from '../utils/auth';
+import { useQuery } from '@apollo/client';
+import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
 function Homepage() {
     return(
         <>
