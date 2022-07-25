@@ -231,7 +231,6 @@ function Categories(props) {
   console.log(props.homedata);
     return(
         <>
-
     <section className=" m-2">
         <h2 className="mx-4">{props.category}</h2>
         <div className='d-flex overflow-auto p-3 '>
