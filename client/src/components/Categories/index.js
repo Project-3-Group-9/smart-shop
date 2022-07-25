@@ -236,7 +236,7 @@ function Categories(props) {
         <div className='d-flex overflow-auto p-3 '>
         {props.homedata.map(category =>(
             <div className='mx-4 bg-light '>
-        <img id="awsImg" src={require(`../../assets/images/categories/images/${category.image}`)}
+        <img id="awsImg" src={require(`../../assets/categories/images/${category.image}`)}
         style={{height:"220px",width:"220px"}}
       ></img>
       <p className='d-block text-end mx-2'>Price:{category.price}</p>
