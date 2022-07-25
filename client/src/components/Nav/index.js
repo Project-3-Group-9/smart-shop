@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown,faUserTie} from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect } from 'react';
 import { NavLink,Link } from 'react-router-dom';
-import logo from '../../assets/images/logo/smart.jpeg' ;
+import logo from '../../assets/logo/smart.jpeg' ;
 function Nav() {
     return(
         <header className="container-fluid">

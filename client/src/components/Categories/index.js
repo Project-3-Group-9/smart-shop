@@ -231,13 +231,12 @@ function Categories(props) {
   console.log(props.homedata);
     return(
         <>
-
     <section className=" m-2">
         <h2 className="mx-4">{props.category}</h2>
         <div className='d-flex overflow-auto p-3 '>
         {props.homedata.map(category =>(
             <div className='mx-4 bg-light '>
-        <img id="awsImg" src={require(`../../assets/images/categories/images/${category.image}`)}
+        <img id="awsImg" src={require(`../../assets/categories/images/${category.image}`)}
         style={{height:"220px",width:"220px"}}
       ></img>
       <p className='d-block text-end mx-2'>Price:{category.price}</p>
