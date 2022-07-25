@@ -3,7 +3,7 @@ function Cart() {
     return(
 <section className='m-5'>
 <h1>We've Got You!</h1>
-      <h2>Here Are Your Books</h2>
+      <h2>Here Are Your Items</h2>
       <table class="table table-hover p-5">
         <thead>
           <tr>
@@ -67,7 +67,7 @@ function Cart() {
             </div>
             <div class="modal-body">
               <p>Payment received.</p>
-              <p>Enjoy your reading!!</p>
+              <p>Enjoy your purchase!!</p>
             </div>
             <div class="modal-footer">
               <button

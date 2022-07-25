@@ -45,6 +45,11 @@
 
   `npm run develop`
 
+## Screenshots
+
+## Demo clip
+
+
 ## Contributors 👨🏽‍💻
   
   [![Badge](https://img.shields.io/badge/Collaborators-6-red)](https://github.com/Project-3-Group-9/smart-shop/graphs/contributors)
@@ -93,7 +98,7 @@
    ![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)
     
   
-  ## GitHub 👀
+  ## GitHub 
 
   [GitHub](https://github.com/Project-3-Group-9/smart-shop)
 
