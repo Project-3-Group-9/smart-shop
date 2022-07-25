@@ -1,0 +1,81 @@
+* {
+    scroll-behavior: smooth;
+
+}
+
+
+
+/* homepage */
+
+.home-ul {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(250, 248, 248);
+    padding: 2vh;
+    
+}
+
+.home-main {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(228, 228, 30);
+    padding: 1vh;
+}
+
+
+
+/* login/sign-out */
+
+.login-form {
+    margin: 8.2%;
+}
+
+
+.sign-out-form {
+    margin: 4.9%;
+}
+
+/* cart */
+
+.cart-form {
+    margin: 4%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+/* categories */
+
+.cat-form {
+    margin: auto;
+}
+
+.cat-sub-form {
+    margin-right:0.5vw;
+    display: flex;
+    justify-content: end;
+}
+
+
+
+/* footer */
+
+.contact-form, .contact-form:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:aliceblue;
+    text-decoration-color: aliceblue;
+    text-decoration: none;
+}
+
+.contact-end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+}
