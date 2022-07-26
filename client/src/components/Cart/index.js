@@ -2,9 +2,15 @@ import React, { useEffect } from 'react';
 import { NavLink,Link } from 'react-router-dom';
 function Cart() {
   let cart = JSON.parse(localStorage.getItem("cart"));
-  
   console.log("cart")
   console.log(cart);
+  const handleClick = () => {
+   console.log("hello");
+  
+    };
+
+
+
     return(
 <section className='m-5'>
 <h1>We've Got You!</h1>
@@ -36,7 +42,10 @@ function Cart() {
       <button type="button" class="btn btn-danger mx-3" id="purchasesHistory">
         Purchases history
       </button>
-      <button type="button" class="btn btn-danger mx-3" id="confirmPurchase">
+      <button onClick={() => {
+            handleClick();
+          }}
+      type="button" class="btn btn-danger mx-3" id="confirmPurchase">
         Confirm purchase!
       </button>
 
