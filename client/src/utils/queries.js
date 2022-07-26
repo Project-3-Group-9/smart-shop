@@ -29,6 +29,16 @@ export const QUERY_ALL_PRODUCTS = gql `
     }
   }
 `;
+export const QUERY_ORDERS= gql `
+query user($email:String!) {
+  products(email: $email) {
+orders{
+  name
+  price
+}
+  }
+}
+`;
 
 export const QUERY_CATEGORIES = gql `
   {

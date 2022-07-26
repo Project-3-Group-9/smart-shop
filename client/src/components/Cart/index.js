@@ -1,10 +1,32 @@
-import React, { useEffect } from 'react';
-import { NavLink,Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink,Link, useSearchParams } from 'react-router-dom';
+import { useMutation,useQuery } from '@apollo/client';
+import { QUERY_ALL_PRODUCTS} from '../../utils/queries';
+import { ADD_ORDER} from '../../utils/mutations';
+import { useNavigate } from "react-router-dom";
 function Cart() {
+  const[searchparams] =useSearchParams();
+  console.log(searchparams.get("id"));
+  let navigate = useNavigate();
+  const[hide,setHide]=useState(false);
+  const [addOrder, { error }] = useMutation(ADD_ORDER);
   let cart = JSON.parse(localStorage.getItem("cart"));
-  
-  console.log("cart")
   console.log(cart);
+  const handleClick = async event => {
+    function myFunction(item,index){
+      let itemName = JSON.stringify(item.name);
+      const { data } = addOrder({variables: {name:itemName,price:item.price}});
+    }
+    cart.forEach(myFunction);
+    };
+    const handleDelete = (name) => {
+      let cart = JSON.parse(localStorage.getItem("cart"));
+      const result = cart.filter(item=>item.name !== name);
+      console.log(result)
+      localStorage.setItem("cart", JSON.stringify(result));
+      navigate("/cart");
+      };
+   
     return(
 <section className='m-5'>
 <h1>We've Got You!</h1>
@@ -22,7 +44,14 @@ function Cart() {
               <tr>
           <th scope="col">{key+1}</th>
           <th scope="col">{items.name}</th>
-            <th scope="col">{items.price}</th>
+          <th scope="col">{items.price}</th>
+          <th scope="col">
+            <button class="btn btn-outline-danger" 
+            style={{fontSize:"20px",fontWeight:"700",height:"30px",paddingTop:"0px"}}
+             onClick={() => {
+              handleDelete(items.name);
+            }}
+            >x</button></th>
           </tr>
              </tbody>
           ))}
@@ -36,7 +65,10 @@ function Cart() {
       <button type="button" class="btn btn-danger mx-3" id="purchasesHistory">
         Purchases history
       </button>
-      <button type="button" class="btn btn-danger mx-3" id="confirmPurchase">
+      <button onClick={() => {
+            handleClick();
+          }}
+          type="button" class="btn btn-danger mx-3" id="confirmPurchase">
         Confirm purchase!
       </button>
 

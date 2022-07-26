@@ -3,17 +3,23 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
-    purchaseDate: {
-        type: Date,
-        default: Date.now
-    },
-    deliverAddress: {
+    // purchaseDate: {
+    //     type: Date,
+    //     default: Date.now
+    // },
+    // deliverAddress: {
+    //     type: String
+    // },
+    // products: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Product'
+    // }]
+    name: {
         type: String
     },
-    products: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
-    }]
+    price:{
+        type: Number
+    },
 });
 
 const Order = mongoose.model('Order', orderSchema);

@@ -19,6 +19,7 @@ const typeDefs = gql `
         login(email: String!, password: String!): Auth
         newUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addOrder(products: [ID]!): Order
+        order(name:String!,price:Float):Order
     }
 
     type Auth {
@@ -39,11 +40,15 @@ const typeDefs = gql `
         name: String
     }
 
-    type Order {
-        purchaseDate: String
-        deliveryAddress: String
-        products: [Product]
+
+  type Order {
+         name:String
+         price:Float
     }
+    type Items {
+        name:String
+        price:Float
+   }
 
     type User {
         firstName: String

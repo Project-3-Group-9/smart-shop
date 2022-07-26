@@ -15,8 +15,7 @@ const resolvers = {
                 .populate('category');
         },
         orders: async() => {
-            return Order.find()
-                .populate('products');
+            return Order.find();
         },
         order: async(parent, { purchaseDate }) => {
             return Order.findOne({ purchaseDate })
@@ -74,6 +73,7 @@ const resolvers = {
             return { token, user };
         },
         addOrder: async(parent, { products, purchaseDate, deliveryAddress }, context) => {
+            console.log("here");
             console.log(context);
             if (context.user) {
                 const order = new Order({ products, purchaseDate, deliveryAddress });
@@ -84,6 +84,14 @@ const resolvers = {
             }
 
             throw new AuthenticationError('Not logged in');
+        },
+        order: async(parent,{name,price}) => {
+            console.log("here");
+                const order = new Order({name,price});
+                console.log(order);
+                await User.findByIdAndUpdate('62daf736fa5b8b05aced2269', { $push: { orders: order } });
+
+                return order;
         },
     }
 };

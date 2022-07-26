@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Redirect,Link } from 'react-router-dom';
+import { Redirect,Link, createSearchParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const data = [
@@ -240,7 +240,11 @@ function Categories(props) {
    let cart = {name,price};
    storagecart.push(cart);
    localStorage.setItem("cart", JSON.stringify(storagecart));
-   navigate("/cart");
+   navigate({
+    pathname:"/cart",
+    search: createSearchParams({
+      id:"sunny"}).toString()
+    });
 
   };
     return(
@@ -253,6 +257,7 @@ function Categories(props) {
         <img  src={require(`../../assets/categories/images/${category.image}`)}
         style={{height:"220px",width:"220px"}}
       ></img>
+      <p className='d-block text-end mx-2'>{category.name}</p>
       <p className='d-block text-end mx-2'>Price:{category.price}</p>
       <p className='d-block text-end mx-2'>Stock:  {category.quantity}</p>
       <button onClick={() => {

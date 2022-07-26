@@ -12,20 +12,9 @@ export const LOGIN = gql `
 `;
 
 export const ADD_ORDER = gql `
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      deliveryAddress
-      products {
-        _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
-        }
-      }
+  mutation addOrder($name:String!,$price:Float!) {
+    order(name:$name,price:$price) {
+      name
     }
   }
 `;

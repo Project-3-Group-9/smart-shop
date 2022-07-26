@@ -13,6 +13,7 @@ import { QUERY_ALL_PRODUCTS} from '../../utils/queries';
 function Homepage() {
   const { loading, data } = useQuery(QUERY_ALL_PRODUCTS);
   const product = data?.products || [];
+  console.log(product);
   const BedroomData = product.filter(prod => prod.category.name === "Bedroom")
   const FaimilyData = product.filter(prod => prod.category.name === "Family Room")
   const DinigData = product.filter(prod => prod.category.name === "Dining Room")
