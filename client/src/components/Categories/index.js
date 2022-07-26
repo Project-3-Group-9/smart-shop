@@ -226,19 +226,21 @@ const data = [
       quantity: 60
     }
   ];
-function Categories() {
+function Categories(props) {
+  console.log("hello");
+  console.log(props.homedata);
     return(
         <>
 
     <section className=" m-2">
-        <h2 className="mx-4">Kitchen</h2>
+        <h2 className="mx-4">{props.category}</h2>
         <div className='d-flex overflow-auto p-3 '>
-        {data.map(category =>(
+        {props.homedata.map(category =>(
             <div className='mx-4 bg-light '>
         <img id="awsImg" src={require(`../../assets/images/categories/images/${category.image}`)}
         style={{height:"220px",width:"220px"}}
       ></img>
-      <p className='d-block text-end mx-2'>Price:  {category.price}</p>
+      <p className='d-block text-end mx-2'>Price:{category.price}</p>
       <p className='d-block text-end mx-2'>Stock:  {category.quantity}</p>
       <button class="btn btn-outline-danger" style={{width:"100%"}}>Add to cart</button>
       </div>

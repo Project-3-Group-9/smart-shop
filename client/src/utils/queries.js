@@ -17,16 +17,14 @@ export const QUERY_PRODUCTS = gql `
 `;
 
 export const QUERY_ALL_PRODUCTS = gql `
-  {
+  query {
     products {
-      _id
+     name
+     image
+     quantity
+     category{
       name
-      description
-      price
-      quantity
-      category {
-        name
-      }
+     }
     }
   }
 `;
