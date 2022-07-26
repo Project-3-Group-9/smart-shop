@@ -231,9 +231,12 @@ function Categories(props) {
   const[cart,setCart]=useState([]);
   
   const handleClick = (name,price) => {
-   alert("hello");
-  //  console.log(name);
-   console.log(price);
+  //  var storagecart = localStorage.getItem("cart");
+  //  console.log(storagecart);
+  let storagecart = JSON.parse(localStorage.getItem("cart")) || [];
+   let cart = {name,price};
+   storagecart.push(cart);
+   localStorage.setItem("cart", JSON.stringify(storagecart));
   };
     return(
         <>

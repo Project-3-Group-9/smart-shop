@@ -20,7 +20,6 @@ function Homepage() {
   const BathroomData = product.filter(prod => prod.category.name === "Bathroom")
   const BackyardData = product.filter(prod => prod.category.name === "Backyard")
  console.log("result");
-  // const loggedIn = Auth.loggedIn();
     return(
         <>
     <section>
