@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
-import { NavLink,Link } from 'react-router-dom';
+import { Redirect,Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 const data = [
     {
       name: 'Wall Frame',
@@ -228,6 +230,7 @@ const data = [
   ];
  
 function Categories(props) {
+  let navigate = useNavigate();
   const[cart,setCart]=useState([]);
   
   const handleClick = (name,price) => {
@@ -237,6 +240,8 @@ function Categories(props) {
    let cart = {name,price};
    storagecart.push(cart);
    localStorage.setItem("cart", JSON.stringify(storagecart));
+   navigate("/cart");
+
   };
     return(
         <>
