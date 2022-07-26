@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
+import { NavLink,Link } from 'react-router-dom';
 function Cart() {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  
+  console.log("cart")
+  console.log(cart);
     return(
 <section className='m-5'>
 <h1>We've Got You!</h1>
@@ -7,17 +12,27 @@ function Cart() {
       <table class="table table-hover p-5">
         <thead>
           <tr>
-          <th scope="col">Id</th>
+          <th scope="col"></th>
           <th scope="col">Name</th>
             <th scope="col">Price</th>
           </tr>
           </thead>
-        <tbody id="cartTableBody">
-        </tbody>
+          {cart.map((items,key) =>(
+             <tbody id="cartTableBody">
+              <tr>
+          <th scope="col">{key+1}</th>
+          <th scope="col">{items.name}</th>
+            <th scope="col">{items.price}</th>
+          </tr>
+             </tbody>
+          ))}
+       
       </table>
+      <Link to="/" className='text-decoration-none text-black'>
       <button type="button" class="btn btn-danger mx-3" id="continueBrowsing">
         Continue browsing
       </button>
+      </Link>
       <button type="button" class="btn btn-danger mx-3" id="purchasesHistory">
         Purchases history
       </button>
