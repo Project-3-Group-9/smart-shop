@@ -194,7 +194,7 @@ db.once('open', async () => {
       category: categories[3]._id,
       description:
         'Portable food scale equipped with 4 high precision sensors, give you accurate weight all the time; 5kg/11lb capacity, 0.04oz/1g division, Perfect for baking, cooking, and postage.',
-      image: 'alphabet-blocks.jpg',
+      image: 'kitchen-scale.jpg',
       price: 28.99,
       quantity: 150
     },
