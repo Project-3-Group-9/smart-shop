@@ -6,17 +6,34 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 // import Project from './components/Project';
 import Footer from './components/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { setContext } from '@apollo/client/link/context';
 import SignIN from './components/SignInPage';
 import SignUp from './components/SignUpPage';
+
 function App() {
-  const httpLink = createHttpLink({
-    uri: 'http://localhost:3001/graphql',
-  });
   
-  const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
-  });
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+  onError: ({ networkError, graphQLErrors }) => {
+    console.log('graphQLErrors', graphQLErrors)
+    console.log('networkError', networkError)
+  }
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
   return (
     <ApolloProvider client={client}>
     <Router>
