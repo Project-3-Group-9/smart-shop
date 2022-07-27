@@ -61,13 +61,13 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('Your credentials are incorrect');
+                throw new AuthenticationError('Your credentials are incorrect. please try again.');
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Your credentials are incorrect');
+                throw new AuthenticationError('Your credentials are incorrect. please try again.');
             }
 
             const token = signToken(user);
@@ -86,13 +86,13 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
-        order: async(parent,{name,price}) => {
+        order: async(parent, { name, price }) => {
             console.log("here");
-                const order = new Order({name,price});
-                console.log(order);
-                await User.findByIdAndUpdate('62daf736fa5b8b05aced2269', { $push: { orders: order } });
+            const order = new Order({ name, price });
+            console.log(order);
+            await User.findByIdAndUpdate('62daf736fa5b8b05aced2269', { $push: { orders: order } });
 
-                return order;
+            return order;
         },
     }
 };
