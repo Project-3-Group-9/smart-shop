@@ -8,10 +8,10 @@ import Footer from './components/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import SignIN from './components/SignInPage';
 import SignUp from './components/SignUpPage';
-const PORT = process.env.PORT || 3001;
+
 function App() {
   const httpLink = createHttpLink({
-    uri: `http://localhost:${PORT}/graphql`,
+    uri: `/graphql`,
   });
   
   const client = new ApolloClient({
