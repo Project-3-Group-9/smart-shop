@@ -3,6 +3,7 @@ import { NavLink,Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import "../stylesheet.css"
 function SignIN() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
@@ -29,7 +30,7 @@ function SignIN() {
   };
 
     return(
-<section className='p-5'>
+<section className='login-form'>
 <div class='row'>
         <div class='col-12 col-md-6 col-md-offset-3'>
           <h2>Login Form</h2>

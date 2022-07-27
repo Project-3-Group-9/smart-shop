@@ -3,6 +3,7 @@ import { NavLink,Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
+import "../stylesheet.css"
 function SignUp() {
   const [formState, setFormState] = useState({ username:'',email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -28,7 +29,7 @@ function SignUp() {
     });
   };
     return(
-<section className='p-5'>
+<section className='sign-out-form'>
 <div class='row'>
         <div class='col-12 col-md-6 col-md-offset-3'>
           <h2>Sign Up Form</h2>

@@ -4,6 +4,7 @@ import { useMutation,useQuery } from '@apollo/client';
 import { QUERY_ALL_PRODUCTS} from '../../utils/queries';
 import { ADD_ORDER} from '../../utils/mutations';
 import { useNavigate } from "react-router-dom";
+import "../stylesheet.css"
 function Cart() {
   const[searchparams] =useSearchParams();
   console.log(searchparams.get("id"));
@@ -28,7 +29,7 @@ function Cart() {
       };
    
     return(
-<section className='m-5'>
+<section className='cart-form'>
 <h1>We've Got You!</h1>
       <h2>Here Are Your Items</h2>
       <table class="table table-hover p-5">
