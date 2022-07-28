@@ -49,7 +49,7 @@
 
 ![image](./resources/images/Picture1.png)
 ![image](./resources/images/Picture2.png)
-![image](./resources/images/Screenshots_2022-07-27-18-16-46.png)
+![image](./resources/images/Picture3.png)
 
 ## Demo clip
 
