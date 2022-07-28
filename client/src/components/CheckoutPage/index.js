@@ -11,15 +11,20 @@ import {
 } from "@stripe/react-stripe-js";
 
 
-let cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart);
-  let sum = 0;
-  var sumTotal;
+let cart = localStorage.getItem("cart");
+let sum = 0;
+var sumTotal;
+if(cart != ""){
+  cart = JSON.parse(localStorage.getItem("cart"));
+
+  console.log(cart,"cart");
+ 
   cart.forEach((item,index)=>{
    sum = sum + item.price;
    sumTotal = Math.round(sum);
      
   });
+}
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
