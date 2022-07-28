@@ -17,7 +17,7 @@ export const QUERY_PRODUCTS = gql `
 `;
 
 export const QUERY_ALL_PRODUCTS = gql `
-  {
+  query {
     products {
      name
      image
@@ -30,12 +30,12 @@ export const QUERY_ALL_PRODUCTS = gql `
   }
 `;
 export const QUERY_ORDERS= gql `
-query user($email:String!) {
-  products(email: $email) {
-orders{
-  name
-  price
-}
+query($email:String!) {
+  user(email:$email) {
+    orders{
+      name
+      price
+    }
   }
 }
 `;
