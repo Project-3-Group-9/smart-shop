@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import '../stylesheet.css'
 function Footer() {
     return(
 <footer className="p-2 p-md-5 bg-dark">

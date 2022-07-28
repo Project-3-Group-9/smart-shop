@@ -3,7 +3,6 @@ import { NavLink,Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
-import "../stylesheet.css"
 function SignUp() {
   const [formState, setFormState] = useState({ username:'',email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);

@@ -1,24 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink,Link, useSearchParams } from 'react-router-dom';
 import { useMutation,useQuery } from '@apollo/client';
-import { QUERY_ALL_PRODUCTS} from '../../utils/queries';
+import { QUERY_ORDERS} from '../../utils/queries';
 import { ADD_ORDER} from '../../utils/mutations';
 import { useNavigate } from "react-router-dom";
-import "../stylesheet.css"
+import Auth from "../../utils/auth";
 function Cart() {
+  var profileEmail = Auth.getProfile();
+    var tempEmail =profileEmail.data.email
+  const [toggle, setToggle] = useState(false)
+  const { loading, data } = useQuery(QUERY_ORDERS,{
+    variables:{email:tempEmail}
+  });
+  const orderData = data?.user || [];
+  console.log("orders");
+  console.log(orderData.orders);
   const[searchparams] =useSearchParams();
   console.log(searchparams.get("id"));
   let navigate = useNavigate();
-  const[hide,setHide]=useState(false);
+  const[total,setTotal]=useState(0);
   const [addOrder, { error }] = useMutation(ADD_ORDER);
   let cart = JSON.parse(localStorage.getItem("cart"));
   console.log(cart);
+  let sum = 0;
+  var sumTotal;
+  cart.forEach((item,index)=>{
+   sum = sum + item.price;
+   sumTotal = Math.round(sum);
+  //  setTotal(sum);
+  });
+  var discount =0;
+  if (sumTotal> 50){
+   discount = 10
+  }else{
+    discount = 0;
+  }
   const handleClick = async event => {
     function myFunction(item,index){
       let itemName = JSON.stringify(item.name);
       const { data } = addOrder({variables: {name:itemName,price:item.price}});
     }
     cart.forEach(myFunction);
+    localStorage.setItem("cart","[]")
     };
     const handleDelete = (name) => {
       let cart = JSON.parse(localStorage.getItem("cart"));
@@ -27,6 +50,7 @@ function Cart() {
       localStorage.setItem("cart", JSON.stringify(result));
       navigate("/cart");
       };
+    
    
     return(
 <section className='cart-form'>
@@ -40,8 +64,9 @@ function Cart() {
             <th scope="col">Price</th>
           </tr>
           </thead>
+          <tbody id="cartTableBody">
           {cart.map((items,key) =>(
-             <tbody id="cartTableBody">
+             
               <tr>
           <th scope="col">{key+1}</th>
           <th scope="col">{items.name}</th>
@@ -54,16 +79,28 @@ function Cart() {
             }}
             >x</button></th>
           </tr>
-             </tbody>
+             
           ))}
-       
+          <tr>
+          <th scope="col"></th>
+          <th scope="col">Discount</th>
+          <th scope="col"> $ {discount}</th>
+          </tr>
+          <tr>
+          <th scope="col"></th>
+          <th scope="col">Total</th>
+          <th scope="col"> $ {sumTotal - discount}</th>
+          </tr>
+       </tbody>
       </table>
       <Link to="/" className='text-decoration-none text-black'>
       <button type="button" class="btn btn-danger mx-3" id="continueBrowsing">
         Continue browsing
       </button>
       </Link>
-      <button type="button" class="btn btn-danger mx-3" id="purchasesHistory">
+      <button 
+      onClick={() => setToggle(!toggle)}
+          type="button" class="btn btn-danger mx-3" id="purchasesHistory">
         Purchases history
       </button>
       <button onClick={() => {
@@ -72,20 +109,27 @@ function Cart() {
           type="button" class="btn btn-danger mx-3" id="confirmPurchase">
         Confirm purchase!
       </button>
-
+{toggle && (
+  <>
       <div id="purchasesDiv">
         <h1 class="mt-5">Purchases history</h1>
         <table class="table table-hover p-5">
           <thead>
             <tr>
-            <th scope="col">UserId</th>
+            <th scope="col"></th>
             <th scope="col">Title</th>
               <th scope="col">Price</th>
-              <th scope="col">Date</th>
             </tr>
           </thead>
-          <tbody id="purchasesTableBody">
-          </tbody>
+          {orderData.orders.map((items,key) =>(
+             <tbody id="cartTableBody">
+              <tr>
+          <th scope="col">{key+1}</th>
+          <th scope="col">{items.name}</th>
+          <th scope="col">{items.price}</th>
+          </tr>
+             </tbody>
+          ))}
         </table>
       </div>
       <div
@@ -129,7 +173,9 @@ function Cart() {
           </div>
         </div>
       </div>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTst0bPCetb2YqQwuNRqVpwRTkoLozhhlyKCA&usqp=CAU" class="d-block w-40" alt="..."></img>
+      </>    
+)}
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTst0bPCetb2YqQwuNRqVpwRTkoLozhhlyKCA&usqp=CAU" class="d-block w-40 p-3" alt="..."></img>
 </section>
     )
 }

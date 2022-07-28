@@ -86,13 +86,15 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
-        order: async(parent, { name, price }) => {
-            console.log("here");
-            const order = new Order({ name, price });
-            console.log(order);
-            await User.findByIdAndUpdate('62daf736fa5b8b05aced2269', { $push: { orders: order } });
-
-            return order;
+        order: async(parent,{name,price},context) => {
+            let email = context.user.email;
+            const user = await User.findOne({ email });
+            if (context.user) {
+                const order = new Order({name,price});
+                await User.findByIdAndUpdate(user._id, { $push: { orders: order } });
+                return order;
+            }
+            throw new AuthenticationError('Not logged in');
         },
     }
 };
