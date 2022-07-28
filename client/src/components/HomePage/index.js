@@ -266,13 +266,13 @@ import { QUERY_ALL_PRODUCTS} from '../../utils/queries';
 function Homepage() {
   const { loading, data } = useQuery(QUERY_ALL_PRODUCTS);
   const product = data?.products || [];
-  console.log(data);
-  const BedroomData = data.filter(prod => prod.type === "Bedroom")
-  const FamilyData = data.filter(prod => prod.type === "Family Room")
-  const DiningData = data.filter(prod => prod.type === "Dining Room")
-  const KitchenData = data.filter(prod => prod.type === "Kitchen")
-  const BathroomData = data.filter(prod => prod.type === "Bathroom")
-  const BackyardData = data.filter(prod => prod.type === "Backyard")
+  console.log(product);
+  const BedroomData = product.filter(prod => prod.type === "Bedroom")
+  const FamilyData = product.filter(prod => prod.type === "Family Room")
+  const DiningData = product.filter(prod => prod.type === "Dining Room")
+  const KitchenData = product.filter(prod => prod.type === "Kitchen")
+  const BathroomData = product.filter(prod => prod.type === "Bathroom")
+  const BackyardData = product.filter(prod => prod.type === "Backyard")
  console.log("result");
     return(
         <>
