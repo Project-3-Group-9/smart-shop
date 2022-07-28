@@ -30,12 +30,12 @@ export const QUERY_ALL_PRODUCTS = gql `
   }
 `;
 export const QUERY_ORDERS= gql `
-query($email:String!) {
-  user(email:$email) {
-    orders{
-      name
-      price
-    }
+query user($email:String!) {
+  products(email: $email) {
+orders{
+  name
+  price
+}
   }
 }
 `;

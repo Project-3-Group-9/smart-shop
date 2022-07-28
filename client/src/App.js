@@ -8,24 +8,13 @@ import Footer from './components/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import SignIN from './components/SignInPage';
 import SignUp from './components/SignUpPage';
-import { setContext } from '@apollo/client/link/context';
 function App() {
   const httpLink = createHttpLink({
-    uri: `/graphql`,
-  });
-  
-  const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('id_token');
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    };
+    uri: 'http://localhost:3001/graphql',
   });
   
   const client = new ApolloClient({
-    link: authLink.concat(httpLink),
+    link: httpLink,
     cache: new InMemoryCache(),
   });
   return (

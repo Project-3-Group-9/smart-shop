@@ -47,11 +47,6 @@
 
 ## Screenshots
 
-![image](./resources/images/Picture1.png)
-![image](./resources/images/Picture2.png)
-
-![image](./resources/images/Picture3.png)
-
 ## Demo clip
 
 
@@ -106,7 +101,6 @@
   ## GitHub 
 
   [GitHub](https://github.com/Project-3-Group-9/smart-shop)
-  [Heroku](https://smart-sh0p.herokuapp.com/)
 
   ## Email 📬
 

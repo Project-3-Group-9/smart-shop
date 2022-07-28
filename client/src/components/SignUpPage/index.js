@@ -16,7 +16,7 @@ function SignUp() {
         userName: formState.username,
       },
     });
-    const token = mutationResponse.data.newUser.token;
+    const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
 
@@ -28,7 +28,7 @@ function SignUp() {
     });
   };
     return(
-<section className='sign-out-form'>
+<section className='p-5'>
 <div class='row'>
         <div class='col-12 col-md-6 col-md-offset-3'>
           <h2>Sign Up Form</h2>
@@ -58,7 +58,7 @@ function SignUp() {
             <div class='form-group my-4'>
               <label for='exampleInputPassword1'>Password</label>
               <input
-                type='password'
+                booktype='password'
                 class='form-control'
                 id='signup-password'
                 placeholder='Password'
