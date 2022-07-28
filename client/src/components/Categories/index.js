@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Redirect,Link, createSearchParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-
+import Auth from "../../utils/auth";
 const data = [
     {
       name: 'Wall Frame',
@@ -240,12 +240,8 @@ function Categories(props) {
    let cart = {name,price};
    storagecart.push(cart);
    localStorage.setItem("cart", JSON.stringify(storagecart));
-   navigate({
-    pathname:"/cart",
-    search: createSearchParams({
-      id:"sunny"}).toString()
-    });
-
+   {Auth.loggedIn() ? (navigate("/cart")):(navigate("/login"))
+  }
   };
     return(
         <>
