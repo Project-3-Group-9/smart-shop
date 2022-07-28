@@ -3,8 +3,6 @@ import { faCartArrowDown,faUserTie} from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/smart.jpeg' ;
-import Auth from '../../utils/auth';
-
 function Nav() {
     function handleClick(){
         alert("serched")
@@ -21,36 +19,22 @@ function Nav() {
           </div>
           <nav className="col-6 my-4 col-md-3 col-lg-3 my-2 order-md-3">
          <ul className="d-flex list-unstyled justify-content-end">
-            {/* if user is logged in show logout */}
-            {Auth.loggedIn() ? (
-            <>
-                <li className="p-1 mx-2 text-decoration-none" style={{fontSize:"20px"}}>
-                <Link to="/" onClick={Auth.logout} className='text-decoration-none text-black'><FontAwesomeIcon icon={faUserTie} 
-                className="text-danger mx-1 "
-                style={{fontSize:"25px"}}/>Logout
-                </Link>
-                </li>
-                <li>
-                <Link to={{
-                pathname: '/cart',
-                state: [{id: 1, name: 'Ford', color: 'red'}]
-                }}>
-                <FontAwesomeIcon icon={faCartArrowDown} 
-                className="text-danger mt-1"
-                style={{fontSize:"30px"}}/>
-                </Link>
-                </li>
-                </>
-            ) : (
-                <li className="p-1 mx-2 text-decoration-none" style={{fontSize:"20px"}}>
-                <Link to="/login" className='text-decoration-none text-black'><FontAwesomeIcon icon={faUserTie} 
-                className="text-danger mx-1 "
-                style={{fontSize:"25px"}}/>Login
-                </Link>
-                </li>
-              )}
-            
-            
+            <li className="p-1 mx-2 text-decoration-none" style={{fontSize:"25px"}}>
+            <Link to="/login" className='text-decoration-none text-black'><FontAwesomeIcon icon={faUserTie} 
+            className="text-danger mx-1 "
+            style={{fontSize:"36px"}}/>Login
+            </Link>
+            </li>
+            <li>
+            <Link to={{
+  pathname: '/cart',
+  state: [{id: 1, name: 'Ford', color: 'red'}]
+}}>
+            <FontAwesomeIcon icon={faCartArrowDown} 
+            className="text-danger mt-1"
+            style={{fontSize:"40px"}}/>
+            </Link>
+            </li>
          </ul>
          </nav>
           <div className="col-12 my-4 col-md-6 col-lg-6 order-md-2">

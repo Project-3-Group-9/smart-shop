@@ -56,11 +56,6 @@ function SignIN() {
                 onChange={handleChange}
               />
             </div>
-            {error ? (
-            <div className='p-md-3'>
-              <p className="ErrorMessage">{error.message}</p>
-            </div>
-            ) : null}
             <button type='submit' className='btn btn-default btn-danger my-3'>Login</button>
           </form>
           <br />

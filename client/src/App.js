@@ -11,7 +11,7 @@ import SignUp from './components/SignUpPage';
 import CheckoutForm from './components/CheckoutPage';
 function App() {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:3001/graphql',
+    uri: '/graphql',
   });
   const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');

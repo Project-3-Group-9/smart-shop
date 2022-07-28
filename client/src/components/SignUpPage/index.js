@@ -16,7 +16,7 @@ function SignUp() {
         userName: formState.username,
       },
     });
-    const token = mutationResponse.data.newUser.token;
+    const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
 
@@ -58,7 +58,7 @@ function SignUp() {
             <div class='form-group my-4'>
               <label for='exampleInputPassword1'>Password</label>
               <input
-                type='password'
+                booktype='password'
                 class='form-control'
                 id='signup-password'
                 placeholder='Password'
