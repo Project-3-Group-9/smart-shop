@@ -30,6 +30,16 @@ function Nav() {
                 style={{fontSize:"25px"}}/>Logout
                 </Link>
                 </li>
+                <li>
+                <Link to={{
+                pathname: '/cart',
+                state: [{id: 1, name: 'Ford', color: 'red'}]
+                }}>
+                <FontAwesomeIcon icon={faCartArrowDown} 
+                className="text-danger mt-1"
+                style={{fontSize:"30px"}}/>
+                </Link>
+                </li>
                 </>
             ) : (
                 <li className="p-1 mx-2 text-decoration-none" style={{fontSize:"20px"}}>
@@ -39,16 +49,7 @@ function Nav() {
                 </Link>
                 </li>
               )}
-            <li>
-            <Link to={{
-            pathname: '/cart',
-            state: [{id: 1, name: 'Ford', color: 'red'}]
-            }}>
-            <FontAwesomeIcon icon={faCartArrowDown} 
-            className="text-danger mt-1"
-            style={{fontSize:"30px"}}/>
-            </Link>
-            </li>
+            
             
          </ul>
          </nav>
