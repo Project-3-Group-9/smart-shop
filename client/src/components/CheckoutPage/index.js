@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { useMutation } from '@apollo/client';
+import { ADD_ORDER} from '../../utils/mutations';
+import { useNavigate } from "react-router-dom";
 import {
   CardElement,
   Elements,
@@ -7,6 +10,16 @@ import {
   useStripe
 } from "@stripe/react-stripe-js";
 
+
+let cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart);
+  let sum = 0;
+  var sumTotal;
+  cart.forEach((item,index)=>{
+   sum = sum + item.price;
+   sumTotal = Math.round(sum);
+     
+  });
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -105,17 +118,21 @@ const ResetButton = ({ onClick }) => (
 );
 
 const BillingForm = () => {
+
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [addOrder] = useMutation(ADD_ORDER);
+  let navigate = useNavigate();
   const [billingDetails, setBillingDetails] = useState({
       name:"",
       email: "",
       phone: ""
   });
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -130,9 +147,15 @@ const BillingForm = () => {
       elements.getElement("card").focus();
       return;
     }
-
+  
     if (cardComplete) {
       setProcessing(true);
+      function myFunction(item,index){
+      let itemName = JSON.stringify(item.name);
+      const { data } = addOrder({variables: {name:itemName,price:item.price}});
+      localStorage.removeItem("cart");
+    }
+    cart.forEach(myFunction);
     }
 
     const payload = await stripe.createPaymentMethod({
@@ -163,21 +186,23 @@ const BillingForm = () => {
 
   return paymentMethod ? (
     
-    <div className="col-md-6">
+   
     <div className="Result">
       <div className="ResultTitle" role="alert">
        <h1> Payment successful</h1>
       </div>
       <div className="ResultMessage">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTst0bPCetb2YqQwuNRqVpwRTkoLozhhlyKCA&usqp=CAU" class="d-block w-40" alt="..."></img>
         Thanks for for your payment! No money was charged, but we
         generated a PaymentMethod: {paymentMethod.id}
       </div>
       <ResetButton onClick={reset} />
     </div>
-    </div>
+  
   ) : (
-    <div className="col-md-6">
+   
     <form className="Form" onSubmit={handleSubmit}>
+    <h5>Your Cart total Amount ${sumTotal}</h5>
       <fieldset className="FormGroup">
         <Field
           label="Name"
@@ -229,11 +254,11 @@ const BillingForm = () => {
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <div className="d-grid gap-2 d-md-block">
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        Continue to Checkout
+        Continue to Pay $ {sumTotal}
       </SubmitButton>
       </div>
     </form>
-    </div>
+ 
   );
 };
 const stripePromise = loadStripe("pk_test_51LPQJWIUSJLSSErUL4SQT6ejQbhp1ZXfZPcvL18x2lHQwZ6UybfdP4ICsyDKu467XYv4DUefhN96ghgWIqOEnXFy00dri5Afcn");
@@ -246,9 +271,16 @@ const ELEMENTS_OPTIONS = {
 };
 const CheckoutForm = () => {
   return (
+    <section className='p-5'>
+      <div class='row'>
+        <div class='col-12 col-md-6 col-md-offset-3'>
+          <h2>Checkout Form</h2>
       <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
         <BillingForm />
       </Elements>
+      </div>
+      </div>
+    </section>
   );
 };
 export default CheckoutForm;
