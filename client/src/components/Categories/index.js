@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Redirect,Link, createSearchParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import auth from '../../utils/auth';
 
 function Categories(props) {
   let navigate = useNavigate();
@@ -9,17 +10,22 @@ function Categories(props) {
   // var output = [dinner, out, bath, kitchen, fam, bed]
   
   const handleClick = (name,price) => {
-  //  var storagecart = localStorage.getItem("cart");
-  //  console.log(storagecart);
-  let storagecart = JSON.parse(localStorage.getItem("cart")) || [];
-  let cart = {name,price};
-  storagecart.push(cart);
-  localStorage.setItem("cart", JSON.stringify(storagecart));
-  navigate({
-  pathname:"/cart",
-  search: createSearchParams({
-    id:"sunny"}).toString()
-  });
+    if (auth.loggedIn()){
+    //  var storagecart = localStorage.getItem("cart");
+      //  console.log(storagecart);
+      let storagecart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cart = {name,price};
+      storagecart.push(cart);
+      localStorage.setItem("cart", JSON.stringify(storagecart));
+      navigate({
+      pathname:"/cart",
+      search: createSearchParams({
+        id:"sunny"}).toString()
+      });
+    }else{
+      navigate("/login");
+    }
+ 
  
   
 
