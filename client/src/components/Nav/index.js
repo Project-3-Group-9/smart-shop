@@ -53,7 +53,7 @@ function Nav() {
          </ul>
          </nav>
           <div className="col-12 my-4 col-md-6 col-lg-6 order-md-2">
-         <div class="input-group">
+         <div className="input-group">
          <input type="search" 
          className="form-control rounded" 
          style={{height:"50px"}}

@@ -1,7 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Product, Order, Category, User } = require('../models');
 const { signToken } = require('../utils/auth');
-// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 
 const resolvers = {
@@ -61,24 +60,24 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('Your credentials are incorrect. please try again.');
+                throw new AuthenticationError('Your credentials are incorrect');
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Your credentials are incorrect. please try again.');
+                throw new AuthenticationError('Your credentials are incorrect');
             }
 
             const token = signToken(user);
             return { token, user };
         },
-        addOrder: async(parent, { products, purchaseDate, deliveryAddress }, context) => {
+        addOrder: async(parent, { name, price }, context) => {
             console.log("here");
             console.log(context);
             if (context.user) {
-                const order = new Order({ products, purchaseDate, deliveryAddress });
-
+                const order = new Order({ name, price });
+                console.log("order added")
                 await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
                 return order;
