@@ -72,12 +72,12 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addOrder: async(parent, { products, purchaseDate, deliveryAddress }, context) => {
+        addOrder: async(parent, { name, price }, context) => {
             console.log("here");
             console.log(context);
             if (context.user) {
-                const order = new Order({ products, purchaseDate, deliveryAddress });
-
+                const order = new Order({ name, price });
+                console.log("order added")
                 await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
                 return order;
@@ -85,13 +85,13 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
-        order: async(parent,{name,price}) => {
+        order: async(parent, { name, price }) => {
             console.log("here");
-                const order = new Order({name,price});
-                console.log(order);
-                await User.findByIdAndUpdate('62daf736fa5b8b05aced2269', { $push: { orders: order } });
+            const order = new Order({ name, price });
+            console.log(order);
+            await User.findByIdAndUpdate('62daf736fa5b8b05aced2269', { $push: { orders: order } });
 
-                return order;
+            return order;
         },
     }
 };

@@ -29,9 +29,9 @@ export const QUERY_ALL_PRODUCTS = gql `
     }
   }
 `;
-export const QUERY_ORDERS= gql `
-query user($email:String!) {
-  products(email: $email) {
+export const QUERY_ORDERS = gql `
+query getOrders($email:String!) {
+  user(email: $email) {
 orders{
   name
   price
