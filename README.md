@@ -22,6 +22,7 @@
 ## Title
   
    ### SMART SHOP
+
   ![image](./resources/images/Smart%20Online%20Shop%20Chart%20Logo.png)
 
 ## Description 📃
@@ -51,8 +52,6 @@
 ![image](./resources/images/Picture2.png)
 
 ![image](./resources/images/Picture3.png)
-
-## Demo clip
 
 
 ## Contributors 👨🏽‍💻
@@ -106,7 +105,8 @@
   ## GitHub 
 
   [GitHub](https://github.com/Project-3-Group-9/smart-shop)
-  [Heroku](https://smart-sh0p.herokuapp.com/)
+
+  [Heroku](https://lit-savannah-41865.herokuapp.com/)
 
   ## Email 📬
 
