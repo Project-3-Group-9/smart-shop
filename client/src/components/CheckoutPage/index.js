@@ -11,14 +11,13 @@ import {
 } from "@stripe/react-stripe-js";
 
 
-let cart = localStorage.getItem("cart");
+
 let sum = 0;
 var sumTotal;
-if(cart != ""){
+let cart = localStorage.getItem("cart");
+if(cart != "" && cart != null) {
   cart = JSON.parse(localStorage.getItem("cart"));
-
   console.log(cart,"cart");
- 
   cart.forEach((item,index)=>{
    sum = sum + item.price;
    sumTotal = Math.round(sum);
@@ -158,9 +157,9 @@ const BillingForm = () => {
       function myFunction(item,index){
       let itemName = JSON.stringify(item.name);
       const { data } = addOrder({variables: {name:itemName,price:item.price}});
-      localStorage.removeItem("cart");
     }
     cart.forEach(myFunction);
+    localStorage.removeItem("cart");
     }
 
     const payload = await stripe.createPaymentMethod({
@@ -197,7 +196,7 @@ const BillingForm = () => {
        <h1> Payment successful</h1>
       </div>
       <div className="ResultMessage">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTst0bPCetb2YqQwuNRqVpwRTkoLozhhlyKCA&usqp=CAU" class="d-block w-40" alt="..."></img>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTst0bPCetb2YqQwuNRqVpwRTkoLozhhlyKCA&usqp=CAU" className="d-block w-40" alt="..."></img>
         Thanks for for your payment! No money was charged, but we
         generated a PaymentMethod: {paymentMethod.id}
       </div>
@@ -277,8 +276,8 @@ const ELEMENTS_OPTIONS = {
 const CheckoutForm = () => {
   return (
     <section className='p-5'>
-      <div class='row'>
-        <div class='col-12 col-md-6 col-md-offset-3'>
+      <div className='row'>
+        <div className='col-12 col-md-6 col-md-offset-3'>
           <h2>Checkout Form</h2>
       <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
         <BillingForm />

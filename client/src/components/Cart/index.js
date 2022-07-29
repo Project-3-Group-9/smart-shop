@@ -19,23 +19,31 @@ function Cart() {
   console.log(searchparams.get("id"));
   let navigate = useNavigate();
   const[hide,setHide]=useState(false);
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart);
+
+  let cart = localStorage.getItem("cart")
   let sum = 0;
   var sumTotal = 0; 
-  cart.forEach((item,index)=>{
-   sum = sum + item.price;
-   sumTotal = Math.round(sum);
+  if (cart != "" && cart != null){
+    cart = JSON.parse(localStorage.getItem("cart"));
+    cart.forEach((item,index)=>{
+    sum = sum + item.price;
+    sumTotal = Math.round(sum);
   });
+  }
+  
+ 
  
   const handleClick = async event => {
     navigate("/checkout");
     };
     const handleDelete = (name) => {
-      let cart = JSON.parse(localStorage.getItem("cart"));
-      const result = cart.filter(item=>item.name !== name);
-      console.log(result)
-      localStorage.setItem("cart", JSON.stringify(result));
+      if (cart != "" && cart != null){
+        cart = JSON.parse(localStorage.getItem("cart"));
+        const result = cart.filter(item=>item.name !== name);
+        console.log(result)
+        localStorage.setItem("cart", JSON.stringify(result));
+        
+      }
       navigate("/cart");
       };
    
@@ -45,7 +53,7 @@ function Cart() {
   <>
 <h1>We've Got You!</h1>
       <h2>Here Are Your Items</h2>
-      <table class="table table-hover p-5">
+      <table className="table table-hover p-5">
         <thead>
           <tr>
           <th scope="col"></th>
@@ -60,7 +68,7 @@ function Cart() {
           <th scope="col">{items.name}</th>
           <th scope="col">{items.price}</th>
           <th scope="col">
-            <button class="btn btn-outline-danger" 
+            <button className="btn btn-outline-danger" 
             style={{fontSize:"20px",fontWeight:"700",height:"30px",paddingTop:"0px"}}
              onClick={() => {
               handleDelete(items.name);
@@ -78,11 +86,13 @@ function Cart() {
       </>    
 ):( <h2>Currently no items in your cart!</h2>)}
       <Link to="/" className='text-decoration-none text-black'>
-      <button type="button" class="btn btn-danger mx-3" id="continueBrowsing">
+      <button type="button" className="btn btn-danger mx-3" id="continueBrowsing">
         Continue browsing
       </button>
       </Link>
-      <button type="button" class="btn btn-danger mx-3" id="purchasesHistory">
+      <button onClick={() => {
+           setToggle(true);
+          }} type="button" className="btn btn-danger mx-3" id="purchasesHistory">
         Purchases history
       </button>
 
@@ -91,18 +101,18 @@ function Cart() {
       <button onClick={() => {
             handleClick();
           }}
-          type="button" class="btn btn-danger mx-3" id="confirmPurchase">
+          type="button" className="btn btn-danger mx-3" id="confirmPurchase">
         Checkout
       </button>
       </>
-      )};
+      )}
       {toggle && (
   <>
   {Auth.loggedIn()  && (
     <>
       <div id="purchasesDiv">
-        <h1 class="mt-5">Purchases history</h1>
-        <table class="table table-hover p-5">
+        <h1 className="mt-5">Purchases history</h1>
+        <table className="table table-hover p-5">
           <thead>
             <tr>
             <th scope="col"></th>
@@ -124,7 +134,7 @@ function Cart() {
       </>
       )}
       {/* <div
-        class="modal fade"
+        className="modal fade"
         id="purchaeConfirmationModal"
         data-backdrop="static"
         data-keyboard="false"
@@ -133,29 +143,29 @@ function Cart() {
         aria-labelledby="purchaeConfirmationModal"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="purchaeConfirmationModal">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="purchaeConfirmationModal">
                 Purchase confirmation
               </h5>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <p>Payment received.</p>
               <p>Enjoy your purchase!!</p>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-dismiss="modal"
               >
                 Close

@@ -11,7 +11,7 @@ function Categories(props) {
   const handleClick = (name,price) => {
     if(auth.loggedIn()){
       var storagecart = localStorage.getItem("cart") || [];
-      if(storagecart != ""){
+      if(storagecart != "" && storagecart != null){
         storagecart = JSON.parse(localStorage.getItem("cart"));
       }
        
@@ -36,7 +36,7 @@ function Categories(props) {
         <h2 className="mx-4">{props.category}</h2>
         <div className='d-flex overflow-auto p-3 '>
         {props.homedata.map(category =>(
-            <div className='mx-4 bg-light '>
+            <div className='mx-4 bg-light ' key={category.name}>
         <img  src={require(`../../assets/categories/images/${category.image}`)}
         style={{height:"220px",width:"220px"}}
       ></img>
@@ -46,7 +46,7 @@ function Categories(props) {
       <button onClick={() => {
             handleClick(category.name,category.price);
           }}
-           name={category.name} class="btn btn-outline-danger" style={{width:"100%"}}>Add to cart</button>
+           name={category.name} className="btn btn-outline-danger" style={{width:"100%"}}>Add to cart</button>
       </div>
         ))}
         </div>
